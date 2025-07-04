@@ -96,14 +96,14 @@ export default function MyDeals() {
     setTotal(total);
 
     // Extract unique stage names for filter
-    const stageList = Array.from(
-      new Set(data.map((item) => item.Stage?.toLowerCase()))
+  const stageList = Array.from(
+      new Set(data.map((item) => item.Stage))
     ).filter(Boolean);
 
     const options = [
       { value: "all", label: "All" },
       ...stageList.map((stage) => ({
-        value: stage,
+        value: stage.toLowerCase(),
         label: stage,
       })),
     ];
