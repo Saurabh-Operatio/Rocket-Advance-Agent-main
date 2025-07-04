@@ -104,7 +104,7 @@ export default function MyDeals() {
       { value: "all", label: "All" },
       ...stageList.map((stage) => ({
         value: stage,
-        label: renameStatus(stage),
+        label: stage,
       })),
     ];
     setFilterOptions(options);
