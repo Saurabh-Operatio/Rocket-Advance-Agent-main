@@ -3,7 +3,7 @@ name: Build and Push Docker Image (with dynamic tag)
 on:
   push:
     branches:
-      - develop
+      - development
 
 jobs:
   build-and-deploy:
@@ -40,10 +40,10 @@ jobs:
             cd /home/ubuntu/rocket
             TAG=${{ steps.set-tag.outputs.tag }}
 
-            echo "Updating image for container_name: frontend to tag: $TAG"
+            echo "Updating only frontend_agent image tag in docker-compose.yaml..."
 
             awk -v tag="$TAG" '
-              $0 ~ /container_name: frontend/ { found=1 }
+              $0 ~ /container_name: frontend_agent/ { found=1 }
               found && $0 ~ /image:/ {
                 print "    image: \"saurabh2025operatiomarketing/rocket-advance-agent-main:" tag "\""
                 found=0
@@ -52,8 +52,8 @@ jobs:
               { print }
             ' docker-compose.yaml > docker-compose.tmp && mv docker-compose.tmp docker-compose.yaml
 
-            echo "Verifying updated image:"
-            grep -A2 "container_name: frontend" docker-compose.yaml
+            echo "Verifying updated image line:"
+            grep -A2 "container_name: frontend_agent" docker-compose.yaml
 
-            docker-compose pull frontend
-            docker-compose up -d --no-deps --force-recreate frontend
+            docker-compose pull frontend-agent
+            docker-compose up -d --no-deps --force-recreate frontend-agent
