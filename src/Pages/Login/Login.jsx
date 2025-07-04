@@ -113,8 +113,8 @@ export default function Login() {
               label: "Agent",
             },
             {
-              value: "inverstor",
-              label: "Inverstor",
+              value: "investor",
+              label: "Investor",
               disabled: true,
             },
           ]}
