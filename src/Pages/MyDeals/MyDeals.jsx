@@ -143,7 +143,7 @@ export default function MyDeals() {
         <span
           className={`${stateClass(item?.Stage)} greyText textDecoration spaceNowrap`}
         >
-          {renameStatus(item?.Stage)}
+           {renameStatus(item?.Stage === "Pre Approval Expired" ? "Pre Approval Sent" : item.Stage)}
         </span>
       ),
       Closing_Date: item.Closing_Date && formatDate(item.Closing_Date, false),
