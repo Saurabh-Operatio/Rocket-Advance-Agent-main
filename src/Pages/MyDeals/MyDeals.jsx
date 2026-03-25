@@ -143,7 +143,13 @@ export default function MyDeals() {
         <span
           className={`${stateClass(item?.Stage)} greyText textDecoration spaceNowrap`}
         >
-           {renameStatus(item?.Stage === "Pre Approval Expired" ? "Pre Approval Sent" : item.Stage)}
+           {renameStatus(
+  item?.Stage === "Pre Approval Expired"
+    ? "Pre Approval Sent"
+    : item?.Stage === "Written Off"
+    ? "Funded"
+    : item.Stage
+)}
         </span>
       ),
       Closing_Date: item.Closing_Date && formatDate(item.Closing_Date, false),
@@ -273,7 +279,13 @@ export default function MyDeals() {
                 <div className="field">
                   <div className="field-label">Status</div>
                   <div className={`status-badge textDecoration  ${String(item.Stage).toLowerCase().replace(/\s/g, "")}`}>
-                    {renameStatus(item.Stage)}
+                    {{renameStatus(
+  item?.Stage === "Pre Approval Expired"
+    ? "Pre Approval Sent"
+    : item?.Stage === "Written Off"
+    ? "Funded"
+    : item.Stage
+)}}
                   </div>
                 </div>
                 <hr />
